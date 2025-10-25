@@ -24,3 +24,11 @@ x = data[[
 y = data["Cardiomegaly"]
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state = 42)
+
+
+scaler = StandardScaler()
+
+x_scaled_train = scaler.fit_transform(x_train)
+x_scaled_test = scaler.transform(x_test)
+
+#first method: KNN
