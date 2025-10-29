@@ -116,3 +116,44 @@ print(f"\nScores of cross-validation for each fold using KNN:")
 list(map(print, cv_score_knn))
 print(f"Cross-validation mean score: {np.mean(cv_score_knn):.4f}")
 print(f"Standard deviation of CV score: {np.std(cv_score_knn):.4f}\n")
+
+#SVM
+
+param_grid_svm = {
+    "C": [0.1, 1, 10, 100, 1000],
+    "gamma": [0.1, 1, 10, 100, 1000],
+    "kernel": ["rbf"]
+}
+
+rskf = RepeatedStratifiedKFold(
+    n_splits = 5,
+    n_repeats = 100,
+    random_state = None
+)
+
+grid_search_svc = GridSearchCV(
+    estimator = SVC(),
+    param_grid = param_grid_svm,
+    scoring = "accuracy",
+    cv = rskf,
+    verbose = 1,
+    n_jobs = -1,
+    error_score = 'raise'
+)
+
+grid_search_svc.fit(X_train, y_train)
+
+best_params_svc = grid_search_svc.best_estimator_
+
+pipe_svc = best_params_svc
+
+pipe_svc.fit(X_train, y_train)
+
+cv_score_svc = np.round(cross_val_score(pipe_svc, X_train, y_train), 2)
+
+print(f"\nScores of cross-validation for each fold using SVC:")
+list(map(print, cv_score_svc))
+print(f"Cross-validation mean score: {np.mean(cv_score_svc):.4f}")
+print(f"Standard deviation of CV score: {np.std(cv_score_svc):.4f}\n")
+
+
