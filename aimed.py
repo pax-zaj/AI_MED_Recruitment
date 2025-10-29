@@ -119,7 +119,7 @@ print(f"Standard deviation of CV score: {np.std(cv_score_knn):.4f}\n")
 
 
 
-#SVC
+#SVC method
 
 param_grid_svc = {
     "C": [0.1, 1, 10, 100, 1000],
