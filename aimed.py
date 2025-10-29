@@ -1,17 +1,13 @@
 import numpy as np
 import pandas as pd
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV, RepeatedStratifiedKFold, cross_val_predict, cross_val_score, train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier, VotingClassifier
-from sklearn.gaussian_process import GaussianProcessClassifier
-from sklearn.gaussian_process.kernels import RBF
-from sklearn.naive_bayes import GaussianNB
 from sklearn.pipeline import Pipeline
+from texttable import Texttable
 
 data = pd.read_csv("task_data.csv")
 
@@ -33,6 +29,8 @@ scaler = StandardScaler()
 
 X_scaled_train = scaler.fit_transform(X_train)
 X_scaled_test = scaler.transform(X_test)
+
+
 
 #Decision Tree method
 
@@ -73,6 +71,8 @@ print(f"Scores of cross-validation for each fold using Decision Tree:")
 list(map(print, cv_score_tree))
 print(f"Cross-validation mean score: {np.mean(cv_score_tree):.4f}")
 print(f"Standard deviation of CV score: {np.std(cv_score_tree):.4f}\n")
+
+
 
 #KNN method
 
@@ -117,6 +117,8 @@ list(map(print, cv_score_knn))
 print(f"Cross-validation mean score: {np.mean(cv_score_knn):.4f}")
 print(f"Standard deviation of CV score: {np.std(cv_score_knn):.4f}\n")
 
+
+
 #SVC
 
 param_grid_svc = {
@@ -157,3 +159,33 @@ print(f"Cross-validation mean score: {np.mean(cv_score_svc):.4f}")
 print(f"Standard deviation of CV score: {np.std(cv_score_svc):.4f}\n")
 
 
+
+#Predicitons and an evaluation of each model
+
+y_pred_tree = clf_tree.predict(X_test)
+y_pred_knn  = pipe_knn.predict(X_test)
+y_pred_svc  = pipe_svc.predict(X_test)
+
+
+acc_tree = accuracy_score(y_test, y_pred_tree)
+acc_knn  = accuracy_score(y_test, y_pred_knn)
+acc_svc  = accuracy_score(y_test, y_pred_svc)
+
+
+print(f"Accuracy on test set:")
+print(f"* Decision Tree:        {acc_tree:.3f}")
+print(f"* KNN:      {acc_knn:.3f}")
+print(f"* SVC:      {acc_svc:.3f}\n\n")
+
+
+
+#Results table
+
+t = Texttable()
+t.add_rows([
+    ["Method", "Accuracy"],
+    ["Decision Tree", {acc_tree}],
+    ["KNN", {acc_knn}],
+    ["SVC", {acc_svc}]
+])
+print(t.draw())
