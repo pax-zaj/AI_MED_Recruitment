@@ -135,7 +135,7 @@ rskf = RepeatedStratifiedKFold(
 
 grid_search_svc = GridSearchCV(
     estimator = SVC(),
-    param_grid = param_grid_svm,
+    param_grid = param_grid_svc,
     scoring = "accuracy",
     cv = rskf,
     verbose = 1,
