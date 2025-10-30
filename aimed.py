@@ -119,7 +119,7 @@ print(f"Standard deviation of CV score: {np.std(cv_score_knn):.4f}\n")
 
 
 
-#SVC method
+#SVM method
 
 param_grid_svc = {
     "C": [0.1, 1, 10, 100, 1000],
@@ -186,6 +186,6 @@ t.add_rows([
     ["Method", "Accuracy"],
     ["Decision Tree", {acc_tree}],
     ["KNN", {acc_knn}],
-    ["SVC", {acc_svc}]
+    ["SVM", {acc_svc}]
 ])
 print(t.draw())
