@@ -1,4 +1,4 @@
-# Opis działania programu modelów klasyfikujących kardiomegalię 
+# Opis działania programu modeli klasyfikujących kardiomegalię 
 
 
 
@@ -7,7 +7,7 @@
 
 ## Przetwarzanie danych
 
-Przed rozpoczęciem programowania modelów dane zostały podzielone w proporcji 80:20 odpowiednio na treningowe i testowe oraz zostały przeskalowane przy użyciu skalera standardowego.
+Przed rozpoczęciem programowania modeli dane zostały podzielone w proporcji 80:20 odpowiednio na treningowe i testowe oraz zostały przeskalowane przy użyciu skalera standardowego.
 
 
 ## Decision Tree
@@ -33,11 +33,11 @@ Aby znaleźć odpowiednie hiperparametry dla każdego modelu zostały zastosowan
 
 Program zwraca informację o średniej wartości kroswalidacji i odchylenia standardowego każdego modelu na danych treningowych oraz wynik dokładności każdego modelu na danych testowych. 
 
-Wyniki modelów:
+Wyniki modeli:
 
 <img width="225" height="188" alt="image" src="https://github.com/user-attachments/assets/a0b854fa-ada9-4ae4-9b6b-184e49f75154" />\
 
-Jak widać powyżej, najlepszy wynik dokładności uzyskał model stosujący SVC. Na wyniki najpewniej wpłynęła również niewielka ilość danych przedstawiona modelom.
+Jak widać powyżej, najlepszy wynik dokładności uzyskał model stosujący SVC. Na wyniki, poza sposobami pracy danych modeli i hiperparametrami, wpływ miała również m.in. ilość danych.
 
 
 
