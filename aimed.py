@@ -43,7 +43,7 @@ param_grid_tree = {
 
 rskf = RepeatedStratifiedKFold(
     n_splits = 5,
-    n_repeats = 100,
+    n_repeats = 10,
     random_state = None
 )
 
@@ -84,7 +84,7 @@ param_grid_knn = {
 
 rskf = RepeatedStratifiedKFold(
     n_splits = 5,
-    n_repeats = 100,
+    n_repeats = 10,
     random_state = None
 )
 
@@ -129,7 +129,7 @@ param_grid_svc = {
 
 rskf = RepeatedStratifiedKFold(
     n_splits = 5,
-    n_repeats = 100,
+    n_repeats = 10,
     random_state = None
 )
 
